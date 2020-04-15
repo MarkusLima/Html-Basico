@@ -1,0 +1,69 @@
+<!-- Criado em 28/03/2020
+Author: Markus Lima -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerar Atestado</title>
+</head>
+
+<body style="text-align: center;" id="print" class="conteudo">
+    <div>
+        <img style="width: 300px; height: 200px;"
+            src="https://media.xconomy.com/wordpress/wp-content/images/2016/12/06160314/Depositphotos_132925148_l-2015.jpg"
+            alt="LOGO" />
+    </div>
+
+    <h1>Atestato Médico</h1>
+
+    <div>
+        <form id="formulario">
+            <div style="display: flex; justify-content: center;align-items: center;">
+                <p>Declaro que o Sr.</p>
+                <input style="margin-left: 10px; width: 300px;" placeholder="Digite o nome do paciente"
+                    type="text" id="1">
+                <p>, inscrito no CPF sob o nº </p>
+                <input style="margin-left: 10px;" placeholder="Digite o CPF" type="text" id="2">
+            </div>
+            <p>paciente sob meus cuidados, não se encontra em condições para o trabalho, devendo seu afastamento ser
+                considerado de</p>
+
+            <div style="display: flex; justify-content: center;align-items: center;">
+                <input placeholder="Digite a data de inicio" type="text" id="3">
+                <p style="margin-left: 10px;"> até </p>
+                <input style="margin-left: 10px;" placeholder="Digite a data de termino" type="text" id="4">
+            </div>
+
+        </form>
+
+
+        <button type="submit" onclick="retornando();" value="Imprimir Div separadamente"
+            style="background-color: aqua;">Enviar</button>
+        <button type="submit" onclick="refreshPage();" style="background-color:red;">Limpar</button>
+    </div>
+
+</body>
+<script>
+
+    function refreshPage() {
+        parent.window.document.location.href = 'index.html';
+    }
+
+    function retornando() {
+        var nome = JSON.stringify(document.getElementById("1").value);
+        sessionStorage.setItem('nome', nome);
+        var cpf = JSON.stringify(document.getElementById("2").value);
+        sessionStorage.setItem('cpf', cpf);
+        var dataAtual = JSON.stringify(document.getElementById("3").value);
+        sessionStorage.setItem('dataAtual', dataAtual);
+        var dataTermino = JSON.stringify(document.getElementById("4").value);
+        sessionStorage.setItem('dataTermino', dataTermino);
+
+        window.location.assign("./print.html");
+    }
+</script>
+
+</html>

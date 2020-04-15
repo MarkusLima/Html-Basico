@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerar Atestado</title>
+</head>
+
+<body style="text-align: center;" id="print" class="conteudo">
+    <div>
+        <img style="width: 300px; height: 200px;"
+            src="https://media.xconomy.com/wordpress/wp-content/images/2016/12/06160314/Depositphotos_132925148_l-2015.jpg"
+            alt="LOGO" />
+    </div>
+
+    <h1>Atestato Médico</h1>
+
+    <div>
+        <form id="formulario">
+            <div style="display: flex; justify-content: center;align-items: center;">
+                <p>Declaro que o Sr.</p>
+                <label style="margin-left: 10px; width: 300px;" type="text" id="1"></label>
+                <p>, inscrito no CPF sob o nº </p>
+                <label style="margin-left: 10px;" type="text" id="2"></label>
+            </div>
+
+            <p>paciente sob meus cuidados, não se encontra em condições para o trabalho, devendo seu afastamento ser
+                considerado de</p>
+
+            <div style="display: flex; justify-content: center;align-items: center;">
+                <label type="text" id="3"></label>
+                <p style="margin-left: 10px;"> até </p>
+                <label style="margin-left: 10px;" type="text" id="4"></label>
+            </div>
+        </form>
+
+
+        <button type="submit" onclick="pritnPage();" value="Imprimir Div separadamente"
+            style="background-color: aqua;">Imprimir</button>
+        <button type="submit" onclick="goBack();" style="background-color:red;">Voltar</button>
+    </div>
+
+</body>
+
+<script>
+     function pritnPage() {
+        var conteudo = document.getElementById('print').innerHTML;
+        tela_impressao = window.open('');
+        tela_impressao.document.write(conteudo);
+        tela_impressao.window.print();
+        tela_impressao.window.close();
+    }
+
+    var dadosNome = JSON.parse(sessionStorage.getItem('nome'));
+    document.getElementById("1").innerHTML = dadosNome;
+
+    var dadosCpf = JSON.parse(sessionStorage.getItem('cpf'));
+    document.getElementById("2").innerHTML = dadosCpf;
+
+    var dadosdataAtual = JSON.parse(sessionStorage.getItem('dataAtual'));
+    document.getElementById("3").innerHTML = dadosdataAtual;
+
+    var dadosdataTermino = JSON.parse(sessionStorage.getItem('dataTermino'));
+    document.getElementById("4").innerHTML = dadosdataTermino;
+
+
+    function goBack() {
+        window.location.assign("./index.html");
+    }
+
+</script>
